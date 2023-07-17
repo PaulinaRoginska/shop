@@ -4,24 +4,24 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class CategoryService {
-    private final List<String> mvpCategories = new ArrayList<>();
+    private final List<String> Categories = new ArrayList<>();
 
-    public void addMvpCategory(String category) {
-        mvpCategories.add(category);
+    public void addCategory(String category) {
+        Categories.add(category);
     }
 
-    public void removeMvpCategory(String category) {
-        mvpCategories.remove(category);
+    public void removeCategory(String category) {
+        Categories.remove(category);
     }
 
-    public List<String> showAllMvpCategories() {
-        return mvpCategories;
+    public List<String> showAllCategories() {
+        return Categories;
     }
 
-    public String showOneMvpCategory(String category) {
-        for (String mvpCategory : mvpCategories) {
-            if (mvpCategory.equals(category)) {
-                return mvpCategory;
+    public String showOneCategory(String category) {
+        for (String Category : Categories) {
+            if (Category.equals(category)) {
+                return Category;
             }
         }
         return null;
