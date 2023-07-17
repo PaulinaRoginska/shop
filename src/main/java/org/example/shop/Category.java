@@ -3,12 +3,13 @@ package org.example.shop;
 public record Category(int categoryID, String name) {
 
     public Category {
-        validateCategoryID(categoryID);
+        validateName(name);
     }
-    private void validateCategoryID(int categoryID) {
+
+    private void validateName(String name) {
         if (name == null || name.isBlank() || name.length() == 0 || name.length() >= 50 || name.matches("[a-zA-Z]+")) {
             throw new IllegalArgumentException("Invalid category name.");
         }
-
     }
+
 }
