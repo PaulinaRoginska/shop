@@ -1,7 +1,5 @@
 package org.example.shop.modelsShop;
 
-import org.example.shop.Category;
-
 public record Product(int productId, double price, String name, Category category, int quantity) {
     public Product {
         validatePrice(price);
