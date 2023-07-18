@@ -1,4 +1,4 @@
-package ServiceShop;
+package serviceShop;
 
 import java.util.ArrayList;
 import java.util.List;
