@@ -4,22 +4,22 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class CategoryService {
-    private final List<String> Categories = new ArrayList<>();
+    private final List<String> categories = new ArrayList<>();
 
     public void addCategory(String category) {
-        Categories.add(category);
+        categories.add(category);
     }
 
     public void removeCategory(String category) {
-        Categories.remove(category);
+        categories.remove(category);
     }
 
     public List<String> showAllCategories() {
-        return Categories;
+        return categories;
     }
 
     public String showOneCategory(String category) {
-        for (String Category : Categories) {
+        for (String Category : categories) {
             if (Category.equals(category)) {
                 return Category;
             }
