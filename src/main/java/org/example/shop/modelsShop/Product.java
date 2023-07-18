@@ -2,6 +2,10 @@ package org.example.shop.modelsShop;
 
 public record Product(int productId, double price, String name, Category category, int quantity) {
 
+    public int productId() {
+        return productId;
+    }
+
     public Product {
         validatePrice(price);
         validateName(name);
