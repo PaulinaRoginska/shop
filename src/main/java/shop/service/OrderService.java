@@ -24,7 +24,7 @@ public class OrderService {
 
     public void getAllOrders() {
         for (Order order : orders) {
-            System.out.println(order.orderId());
+            System.out.println(order);
         }
     }
 
