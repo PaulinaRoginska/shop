@@ -36,19 +36,19 @@ public class ProductService {
         return productList;
     }
 
-    public void addProduct(int productId, Product product) {
+    final public void addProduct(int productId, Product product) {
         products.add(product);
     }
 
-    public void removeProduct(int productId, Product product) {
+    final public void removeProduct(int productId, Product product) {
         products.remove(product);
     }
 
-    public List<Product> showAllProducts() {
+    final public List<Product> showAllProducts() {
         return products;
     }
 
-    public Product showOneCategory(int productId, Product product) {
+    final public Product showOneCategory(int productId, Product product) {
         for (Product product1 : products) {
             if (product1.equals(product)) {
                 return product1;
