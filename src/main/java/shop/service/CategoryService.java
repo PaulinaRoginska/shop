@@ -18,16 +18,20 @@ public class CategoryService {
         Category category5 = new Category(5, "Ubrania");
         return categoryList;
     }
-    final public void addCategory(int categoryId, Category category) {
+
+    public final void addCategory(int categoryId, Category category) {
         categories.add(category);
     }
-    final public void removeCategory(int categoryId, Category category) {
+
+    public final void removeCategory(int categoryId, Category category) {
         categories.remove(category);
     }
-    final public List<Category> showAllCategories() {
+
+    public final List<Category> showAllCategories() {
         return categories;
     }
-    final public Category showOneCategory(int categoryId, Category category) {
+
+    public final Category showOneCategory(int categoryId, Category category) {
         for (Category category1 : categories) {
             if (category1.equals(category)) {
                 return category1;
