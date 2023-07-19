@@ -1,4 +1,4 @@
-package org.example.shop.modelsShop;
+package shop.model;
 
 public record Product(int productId, double price, String name, Category category, int quantity) {
 

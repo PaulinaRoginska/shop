@@ -1,4 +1,4 @@
-package org.example.shop.modelsShop;
+package shop.model;
 
 import java.util.Map;
 import java.util.Random;

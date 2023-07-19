@@ -1,4 +1,4 @@
-package org.example.shop.modelsShop;
+package shop.model;
 
 public enum OrderStatus {
     PAID,

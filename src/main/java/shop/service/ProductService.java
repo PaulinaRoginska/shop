@@ -1,7 +1,7 @@
-package serviceShop;
+package shop.service;
 
-import org.example.shop.modelsShop.Category;
-import org.example.shop.modelsShop.Product;
+import shop.model.Category;
+import shop.model.Product;
 
 import java.util.ArrayList;
 import java.util.List;
