@@ -32,7 +32,7 @@ public record Order(int orderId, String orderNumber, double orderSum, String cli
     }
 
     private void validateClientSurname(String clientSurname) {
-        if (clientSurname == null || clientSurname.isBlank() || clientSurname.length() == 0 || clientSurname.length() >= 50 || !clientSurname.matches("[a-zA-Z]+")) {
+        if (clientSurname == null || clientSurname.isBlank() || clientSurname.length() == 0 || clientSurname.length() >= 50 /*|| !clientSurname.matches("[a-zA-Z]+")*/) {
             throw new IllegalArgumentException("Invalid client surname.");
         }
     }
