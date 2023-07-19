@@ -6,12 +6,11 @@ import shop.model.Product;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ProductService{
+public class ProductService {
     public static final List<Product> products = generateProducts();
 
     private static List<Product> generateProducts() {
         List<Product> productList = new ArrayList<>();
-
 
         Product product1 = new Product(1, 1000, "Pralka",
                 new Category(1, "Sprzęt AGD"), 1);
@@ -33,22 +32,34 @@ public class ProductService{
                 new Category(5, "Ubrania"), 2);
         Product product10 = new Product(10, 300, "Kurtka",
                 new Category(5, "Ubrania"), 1);
+        productList.add(product1);
+        productList.add(product2);
+        productList.add(product3);
+        productList.add(product4);
+        productList.add(product5);
+        productList.add(product6);
+        productList.add(product7);
+        productList.add(product8);
+        productList.add(product9);
+        productList.add(product10);
         return productList;
     }
 
-    public final void addProduct(int productId, Product product) {
+    public void addProduct(final int productId, Product product) {
         products.add(product);
     }
 
-    public final void removeProduct(int productId, Product product) {
+    public void removeProduct(final int productId, Product product) {
         products.remove(product);
     }
 
-    public final List<Product> showAllProducts() {
-        return products;
+    public void showAllProducts() {
+        for (Product product : products) {
+            System.out.println(product.name());
+        }
     }
 
-    public final Product showOneCategory(int productId, Product product) {
+    public final Product showOneCategory(final int productId, Product product) {
         for (Product product1 : products) {
             if (product1.equals(product)) {
                 return product1;

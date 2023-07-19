@@ -2,6 +2,7 @@ package shop.service;
 
 import shop.model.Order;
 import shop.model.OrderStatus;
+import shop.model.Product;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -13,19 +14,21 @@ public class OrderService {
         return orders;
     }
 
-    public final void addOrder(Order order) {
+    public void addOrder(Order order) {
         orders.add(order);
     }
 
-    public final void removeOrder(Order order) {
+    public void removeOrder(Order order) {
         orders.remove(order);
     }
 
-    public final List<Order> getAllOrders() {
-        return orders;
+    public void getAllOrders() {
+        for (Order order : orders) {
+            System.out.println(order.orderId());
+        }
     }
 
-    public final Order getOrderById(int orderId) {
+    public Order getOrderById(final int orderId) {
         for (Order order : orders) {
             if (order.orderId() == orderId) {
                 return order;
@@ -34,12 +37,11 @@ public class OrderService {
         return null;
     }
 
-    public final OrderStatus getOrderStatus(Order order) {
+    public OrderStatus getOrderStatus(Order order) {
         return order.orderStatus();
     }
 
-
-    public final void changeOrderStatus(Order order, OrderStatus newStatus) {
+    public void changeOrderStatus(Order order, OrderStatus newStatus) {
         Order updatedOrder = order.withOrderStatus(newStatus);
         int index = orders.indexOf(order);
         if (index != -1) {
