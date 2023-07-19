@@ -62,6 +62,10 @@ public record Order(int orderId, String orderNumber, double orderSum, String cli
         }
         return sb.toString();
     }
+
+    public Order withOrderStatus(OrderStatus newStatus) {
+        return new Order(orderId, orderNumber, orderSum, clientName, clientSurname, clientAddress, newStatus, products);
+    }
 }
 
 

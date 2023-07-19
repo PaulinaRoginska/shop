@@ -6,7 +6,7 @@ import shop.model.Product;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ProductService {
+public class ProductService{
     public static final List<Product> products = generateProducts();
 
     private static List<Product> generateProducts() {
@@ -36,19 +36,19 @@ public class ProductService {
         return productList;
     }
 
-    final public void addProduct(int productId, Product product) {
+    public final void addProduct(int productId, Product product) {
         products.add(product);
     }
 
-    final public void removeProduct(int productId, Product product) {
+    public final void removeProduct(int productId, Product product) {
         products.remove(product);
     }
 
-    final public List<Product> showAllProducts() {
+    public final List<Product> showAllProducts() {
         return products;
     }
 
-    final public Product showOneCategory(int productId, Product product) {
+    public final Product showOneCategory(int productId, Product product) {
         for (Product product1 : products) {
             if (product1.equals(product)) {
                 return product1;
