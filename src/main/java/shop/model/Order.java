@@ -26,7 +26,7 @@ public record Order(int orderId, String orderNumber, double orderSum, String cli
     }
 
     private void validateClientName(String clientName) {
-        if (clientName == null || clientName.isBlank() || clientName.length() == 0 || clientName.length() >= 50 || !clientName.matches("[a-zA-Z]+")) {
+        if (clientName == null || clientName.isBlank() || clientName.length() == 0 || clientName.length() >= 50 /*|| !clientName.matches("[a-zA-Z]+")*/) {
             throw new IllegalArgumentException("Invalid client name.");
         }
     }

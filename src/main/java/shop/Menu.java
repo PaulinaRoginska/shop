@@ -1,6 +1,7 @@
 package shop;
 
 import shop.service.CategoryService;
+import shop.service.OrderService;
 import shop.service.ProductService;
 
 import java.util.Scanner;
@@ -9,6 +10,7 @@ public class Menu {
         private final Scanner scanner = new Scanner(System.in);
         private final CategoryService categoryService = new CategoryService();
         private final ProductService productService = new ProductService();
+        private final OrderService orderService = new OrderService();
 
         public void showMainMenu() {
             boolean exit = false;
@@ -24,13 +26,12 @@ public class Menu {
 
                 switch (choice) {
                     case 1 -> categoryService.showAllCategories();
-                  //  case 2 -> orderService.showAllOrders();
-                  //  case 3 -> orderService.showAllOrderStatus();
+                    case 2 -> orderService.getAllOrders();
+                    /*case 3 -> orderService.getOrderStatus();*/
                     case 4 -> productService.showAllProducts();
                     case 5 -> exit = true;
                     default -> System.out.println("Nieprawidłowy wybór. Spróbuj ponownie.");
                 }
-
                 System.out.println();
             }
         }

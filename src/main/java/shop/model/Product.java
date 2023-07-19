@@ -20,7 +20,7 @@ public record Product(int productId, double price, String name, Category categor
     }
 
     private void validateName(String name) {
-        if (name == null || name.isBlank() || name.length() == 0 || name.length() >= 50 || !name.matches("[a-zA-Z]+")) {
+        if (name == null || name.isBlank() || name.length() == 0 || name.length() >= 50 /*|| !name.matches("[a-zA-Z]+")*/) {
             throw new IllegalArgumentException("Invalid name.");
         }
     }

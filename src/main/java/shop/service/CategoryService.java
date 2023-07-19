@@ -16,22 +16,29 @@ public class CategoryService {
         Category category3 = new Category(3, "Zabawki");
         Category category4 = new Category(4, "Meble");
         Category category5 = new Category(5, "Ubrania");
+        categoryList.add(category1);
+        categoryList.add(category2);
+        categoryList.add(category3);
+        categoryList.add(category4);
+        categoryList.add(category5);
         return categoryList;
     }
 
-    public final void addCategory(int categoryId, Category category) {
+    public void addCategory(final int categoryId, Category category) {
         categories.add(category);
     }
 
-    public final void removeCategory(int categoryId, Category category) {
+    public void removeCategory(final int categoryId, Category category) {
         categories.remove(category);
     }
 
-    public final List<Category> showAllCategories() {
-        return categories;
+    public void showAllCategories() {
+        for (Category category : categories) {
+            System.out.println(category.name());
+        }
     }
 
-    public final Category showOneCategory(int categoryId, Category category) {
+    public Category showOneCategory(final int categoryId, Category category) {
         for (Category category1 : categories) {
             if (category1.equals(category)) {
                 return category1;
