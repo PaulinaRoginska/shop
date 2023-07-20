@@ -15,14 +15,15 @@ import static javax.swing.UIManager.put;
 
 public class OrderService {
     public static final List<Order> orders = generateOrders();
+
     private static List<Order> generateOrders() {
         List<Order> orderList = new ArrayList<>();
         Map<Product, Integer> products = new HashMap<>();
-        products.put(ProductService.products.get(0),1);
+        products.put(ProductService.products.get(0), 1);
         Map<Product, Integer> products1 = new HashMap<>();
-        products.put(ProductService.products.get(1),2);
+        products.put(ProductService.products.get(1), 2);
         Map<Product, Integer> products2 = new HashMap<>();
-        products.put(ProductService.products.get(2),3);
+        products.put(ProductService.products.get(2), 3);
 
         Order order1 = new Order(1, "1/07/2023", 1000, "Anna",
                 "Kowalska", "Kraków", OrderStatus.PAID, products);
@@ -40,8 +41,8 @@ public class OrderService {
         orders.add(order);
     }
 
-    public void removeOrder(final int orderId, Order order) {
-        orders.remove(order);
+    public void removeOrder(int orderId) {
+        orders.removeIf(order -> order.orderId() == orderId);
     }
 
     public void getAllOrders() {
@@ -59,8 +60,9 @@ public class OrderService {
         return null;
     }
 
-    public OrderStatus getOrderStatus(Order order) {
-        return order.orderStatus();
+    public OrderStatus getOrderStatus(int orderId) {
+        Order order = getOrderById(orderId);
+        return order != null ? order.orderStatus() : null;
     }
 
     public void changeOrderStatus(Order order, OrderStatus newStatus) {

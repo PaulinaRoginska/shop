@@ -49,8 +49,8 @@ public class ProductService {
         products.add(product);
     }
 
-    public void removeProduct(final int productId, Product product) {
-        products.remove(product);
+    public void removeProduct(final int productId) {
+        products.remove(productId);
     }
 
     public void showAllProducts() {
@@ -59,9 +59,9 @@ public class ProductService {
         }
     }
 
-    public Product showOneProduct(final int productId, Product product) {
+    public Product showOneProduct(final int productId) {
         for (Product product1 : products) {
-            if (product1.equals(product)) {
+            if (product1.equals(productId)) {
                 return product1;
             }
         }
