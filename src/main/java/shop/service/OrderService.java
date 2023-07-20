@@ -20,11 +20,11 @@ public class OrderService {
 
 
         Order order1 = new Order(1, "1/07/2023", 1000, "Anna",
-                "Kowalska", "Kraków", "Paid", "";
+                "Kowalska", "Kraków", OrderStatus.PAID, " ";
         Order order2 = new Order(2, "2/07/2023", 3000, "Piotr",
-                "Czajka", "Warszawa", "In preparation", " ",
+                "Czajka", "Warszawa", OrderStatus.IN_PREPARATION, " ",
         Order order3 = new Order(3, "3/07/2023", 150, "Ewa",
-                "Cichal", "Warszawa", "Sent", " "
+                "Cichal", "Warszawa", OrderStatus.SENT, " "
         orderList.add(order1);
         orderList.add(order2);
         orderList.add(order3);
