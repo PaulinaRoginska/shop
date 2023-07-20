@@ -59,7 +59,7 @@ public class ProductService {
         }
     }
 
-    public final Product showOneCategory(final int productId, Product product) {
+    public Product showOneProduct(final int productId, Product product) {
         for (Product product1 : products) {
             if (product1.equals(product)) {
                 return product1;
