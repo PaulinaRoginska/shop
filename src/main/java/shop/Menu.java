@@ -71,6 +71,7 @@ public class Menu {
 
             int choice = scanner.nextInt();
             scanner.nextLine();
+            String[] words = scanner.nextLine().split(",");
 
             switch (choice) {
                 case 1 -> productService.showAllProducts();
