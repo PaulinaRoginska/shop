@@ -61,8 +61,8 @@ public class ProductService {
 
     public Product showOneProduct(final int productId) {
         for (Product product1 : products) {
-            if (product1.equals(productId)) {
-                return product1;
+            if (product1.productId()==(productId)) {
+                System.out.println(product1.name());
             }
         }
         return null;
