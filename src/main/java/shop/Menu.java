@@ -51,7 +51,7 @@ public class Menu {
             switch (choice) {
                 case 1 -> categoryService.showAllCategories();
                 case 2 -> categoryService.showOneCategory(1);
-                /*case 3 -> categoryService.addCategory(1, "");*/
+                case 3 -> categoryService.addCategory("AGD");
                 case 4 -> categoryService.removeCategory(2);
                 case 5 -> back = true;
                 default -> System.out.println("Nieprawidłowy wybór. Spróbuj ponownie.");
@@ -64,9 +64,9 @@ public class Menu {
         boolean back = false;
         while (!back) {
             System.out.println("[1] Pokaż wszystkie produkty.");
-            System.out.println("[2] Pokaż jedną kategorię.");
-            System.out.println("[3] Dodaj kategorię.");
-            System.out.println("[4] Usuń kategorię.");
+            System.out.println("[2] Pokaż jeden produkt.");
+            System.out.println("[3] Dodaj produkt.");
+            System.out.println("[4] Usuń produkt.");
             System.out.println("[5] Cofnij");
 
             int choice = scanner.nextInt();
@@ -75,7 +75,7 @@ public class Menu {
             switch (choice) {
                 case 1 -> productService.showAllProducts();
                 case 2 -> productService.showOneProduct(1);
-                /*case 3 -> productService.addProduct(1, "");*/
+                /*case 3 -> productService.addProduct();*/
                 case 4 -> productService.removeProduct(2);
                 case 5 -> back = true;
                 default -> System.out.println("Nieprawidłowy wybór. Spróbuj ponownie.");
