@@ -17,14 +17,19 @@ public class OrderService {
     public static final List<Order> orders = generateOrders();
     private static List<Order> generateOrders() {
         List<Order> orderList = new ArrayList<>();
-
+        Map<Product, Integer> products = new HashMap<>();
+        products.put(ProductService.products.get(0),1);
+        Map<Product, Integer> products1 = new HashMap<>();
+        products.put(ProductService.products.get(1),2);
+        Map<Product, Integer> products2 = new HashMap<>();
+        products.put(ProductService.products.get(2),3);
 
         Order order1 = new Order(1, "1/07/2023", 1000, "Anna",
-                "Kowalska", "Kraków", OrderStatus.PAID, " ";
-        Order order2 = new Order(2, "2/07/2023", 3000, "Piotr",
-                "Czajka", "Warszawa", OrderStatus.IN_PREPARATION, " ",
-        Order order3 = new Order(3, "3/07/2023", 150, "Ewa",
-                "Cichal", "Warszawa", OrderStatus.SENT, " "
+                "Kowalska", "Kraków", OrderStatus.PAID, products);
+        Order order2 = new Order(2, "2/07/2023", 9001, "Piotr",
+                "Czajka", "Warszawa", OrderStatus.IN_PREPARATION, products1);
+        Order order3 = new Order(3, "3/07/2023", 450, "Ewa",
+                "Cichal", "Warszawa", OrderStatus.SENT, products2);
         orderList.add(order1);
         orderList.add(order2);
         orderList.add(order3);
