@@ -21,9 +21,9 @@ public class OrderService {
         Map<Product, Integer> products = new HashMap<>();
         products.put(ProductService.products.get(0), 1);
         Map<Product, Integer> products1 = new HashMap<>();
-        products.put(ProductService.products.get(1), 2);
+        products1.put(ProductService.products.get(1), 2);
         Map<Product, Integer> products2 = new HashMap<>();
-        products.put(ProductService.products.get(2), 3);
+        products2.put(ProductService.products.get(2), 3);
 
         Order order1 = new Order(1, "1/07/2023", 1000, "Anna",
                 "Kowalska", "Kraków", OrderStatus.PAID, products);
@@ -37,7 +37,7 @@ public class OrderService {
         return orderList;
     }
 
-    public void addOrder(final int orderId, Order order) {
+    public void addOrder(Order order) {
         orders.add(order);
     }
 

@@ -24,7 +24,8 @@ public class CategoryService {
         return categoryList;
     }
 
-    public void addCategory(final int categoryId, Category category) {
+    public void addCategory(String name) {
+        Category category = new Category(name);
         categories.add(category);
     }
 
@@ -38,13 +39,12 @@ public class CategoryService {
         }
     }
 
-    public Category showOneCategory(final int categoryId) {
+    public void showOneCategory(final int categoryId) {
         for (Category category1 : categories) {
-            if (category1.equals(categoryId)) {
-                return category1;
+            if (category1.categoryId() == (categoryId)) {
+                System.out.println(category1.name());
             }
         }
-        return null;
     }
 }
 
