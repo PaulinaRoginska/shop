@@ -1,30 +1,47 @@
 package shop.service;
 
+import shop.Main;
+import shop.model.Category;
 import shop.model.Order;
 import shop.model.OrderStatus;
 import shop.model.Product;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+
+import static javax.swing.UIManager.put;
 
 public class OrderService {
-    List<Order> orders = new ArrayList<>();
+    public static final List<Order> orders = generateOrders();
+    private static List<Order> generateOrders() {
+        List<Order> orderList = new ArrayList<>();
 
-    public List<Order> generateOrdersList() {
-        return orders;
+
+        Order order1 = new Order(1, "1/07/2023", 1000, "Anna",
+                "Kowalska", "Kraków", "Paid", "";
+        Order order2 = new Order(2, "2/07/2023", 3000, "Piotr",
+                "Czajka", "Warszawa", "In preparation", " ",
+        Order order3 = new Order(3, "3/07/2023", 150, "Ewa",
+                "Cichal", "Warszawa", "Sent", " "
+        orderList.add(order1);
+        orderList.add(order2);
+        orderList.add(order3);
+        return orderList;
     }
 
-    public void addOrder(Order order) {
+    public void addOrder(final int orderId, Order order) {
         orders.add(order);
     }
 
-    public void removeOrder(Order order) {
+    public void removeOrder(final int orderId, Order order) {
         orders.remove(order);
     }
 
     public void getAllOrders() {
         for (Order order : orders) {
-            System.out.println(order);
+            System.out.println(order.orderNumber());
         }
     }
 
