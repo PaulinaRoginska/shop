@@ -28,8 +28,8 @@ public class CategoryService {
         categories.add(category);
     }
 
-    public void removeCategory(final int categoryId, Category category) {
-        categories.remove(category);
+    public void removeCategory(final int categoryId) {
+        categories.remove(categoryId);
     }
 
     public void showAllCategories() {
@@ -38,9 +38,9 @@ public class CategoryService {
         }
     }
 
-    public Category showOneCategory(final int categoryId, Category category) {
+    public Category showOneCategory(final int categoryId) {
         for (Category category1 : categories) {
-            if (category1.equals(category)) {
+            if (category1.equals(categoryId)) {
                 return category1;
             }
         }

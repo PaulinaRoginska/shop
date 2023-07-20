@@ -35,6 +35,31 @@ public class Menu {
                 System.out.println();
             }
         }
+    public void showCategorySubMenu() {
+        boolean back = false;
+        while (!back) {
+            System.out.println("[1] Pokaż wszystkie kategorie.");
+            System.out.println("[2] Pokaż jedną kategorię.");
+            System.out.println("[3] Dodaj kategorię.");
+            System.out.println("[4] Usuń kategorię.");
+            System.out.println("[5] Cofnij");
+
+            int choice = scanner.nextInt();
+            scanner.nextLine();
+
+            switch (choice) {
+                case 1 -> categoryService.showAllCategories();
+                case 2 -> categoryService.showOneCategory(1);
+                /*case 3 -> categoryService.addCategory(1, "");*/
+                case 4 -> categoryService.removeCategory(2);
+                case 5 -> back = true;
+                default -> System.out.println("Nieprawidłowy wybór. Spróbuj ponownie.");
+            }
+            System.out.println();
+        }
+    }
+
+
 }
 
 
