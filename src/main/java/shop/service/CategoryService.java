@@ -6,10 +6,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class CategoryService {
+    private int lastAssignedId = 0;
 
-    public static final List<Category> categories = generateCategories();
+    private final List<Category> categories = generateCategories();
 
-    public static List<Category> generateCategories() {
+    public List<Category> generateCategories() {
         List<Category> categoryList = new ArrayList<>();
 
         Category category1 = new Category(1, "Sprzęt AGD");
@@ -25,7 +26,9 @@ public class CategoryService {
         return categoryList;
     }
 
-    private int lastAssignedId = 0;
+    public List<Category> getCategories() {
+        return categories;
+    }
 
     public void addCategory(String name) {
         Category category = new Category(lastAssignedId, name);
@@ -35,20 +38,6 @@ public class CategoryService {
 
     public void removeCategory(final int categoryId) {
         categories.remove(categoryId);
-    }
-
-    public void showAllCategories() {
-        for (Category category : categories) {
-            System.out.println(category.name());
-        }
-    }
-
-    public void showOneCategory(final int categoryId) {
-        for (Category category1 : categories) {
-            if (category1.categoryId() == (categoryId)) {
-                System.out.println(category1.name());
-            }
-        }
     }
 }
 
