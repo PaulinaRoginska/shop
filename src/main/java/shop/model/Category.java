@@ -1,11 +1,7 @@
 package shop.model;
 
 public record Category(int categoryId, String name) {
-
-    private static int lastAssignedId = 0;
-
-    public Category(String name) {
-        this(++lastAssignedId, name);
+    public Category {
         validateName(name);
     }
 
