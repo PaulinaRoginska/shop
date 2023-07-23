@@ -14,8 +14,8 @@ import java.util.Scanner;
 public class Menu {
     private final Scanner scanner = new Scanner(System.in);
     private final CategoryService categoryService = new CategoryService();
-    private final ProductService productService = new ProductService();
-    private final OrderService orderService = new OrderService();
+    private final ProductService productService = new ProductService(categoryService);
+    private final OrderService orderService = new OrderService(productService);
 
     public void showMainMenu() {
         boolean exit = false;
@@ -40,13 +40,13 @@ public class Menu {
     }
 
     public void showAllCategories() {
-        for (Category category : categories) {
+        for (Category category : categoryService.getCategories()) {
             System.out.println(category.name());
         }
     }
 
     public void showOneCategory(final int categoryId) {
-        for (Category category1 : categories) {
+        for (Category category1 : categoryService.getCategories()) {
             if (category1.categoryId() == (categoryId)) {
                 System.out.println(category1.name());
             }
@@ -102,13 +102,13 @@ public class Menu {
         }
     }
     public void showAllProducts() {
-        for (Product product : products) {
+        for (Product product : productService.getProducts()) {
             System.out.println(product.name());
         }
     }
 
     public Product showOneProduct(final int productId) {
-        for (Product product1 : products) {
+        for (Product product1 : productService.getProducts()) {
             if (product1.productId() == (productId)) {
                 System.out.println(product1.name());
             }
@@ -155,13 +155,13 @@ public class Menu {
     }
 
     public void getAllOrders() {
-        for (Order order : orders) {
+        for (Order order : orderService.getOrders()) {
             System.out.println(order.orderNumber());
         }
     }
 
     public Order getOrderById(final int orderId) {
-        for (Order order : orders) {
+        for (Order order : orderService.getOrders()) {
             if (order.orderId() == orderId) {
                 return order;
             }
@@ -176,9 +176,9 @@ public class Menu {
 
     public void changeOrderStatus(Order order, OrderStatus newStatus) {
         Order updatedOrder = order.withOrderStatus(newStatus);
-        int index = orders.indexOf(order);
+        int index = orderService.getOrders().indexOf(order);
         if (index != -1) {
-            orders.set(index, updatedOrder);
+            orderService.getOrders().set(index, updatedOrder);
         }
     }
 }
