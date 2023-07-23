@@ -1,11 +1,9 @@
 package shop.model;
 
 import java.util.Map;
-import java.util.Random;
 
 public record Order(int orderId, String orderNumber, Client client, OrderStatus orderStatus,
                     Map<Product, Integer> products) {
-
     public Order {
         validateProducts(products);
     }
@@ -19,15 +17,6 @@ public record Order(int orderId, String orderNumber, Client client, OrderStatus 
                 throw new IllegalArgumentException("Invalid product quantity. Quantity must be higher than 0.");
             }
         }
-    }
-
-    public static String generateOrderNumber() {
-        Random random = new Random();
-        StringBuilder sb = new StringBuilder();
-        for (int i = 0; i < 8; i++) {
-            sb.append((char) (random.nextInt(26) + 'A'));
-        }
-        return sb.toString();
     }
 
     public Order withOrderStatus(OrderStatus newStatus) {

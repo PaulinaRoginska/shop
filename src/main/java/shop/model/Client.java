@@ -1,7 +1,6 @@
 package shop.model;
 
 public record Client(String clientName, String clientSurname, String clientAddress) {
-
     public Client {
         validateClientName(clientName);
         validateClientSurname(clientSurname);

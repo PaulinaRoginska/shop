@@ -7,7 +7,6 @@ import java.util.List;
 
 public class CategoryService {
     private int lastAssignedId = 0;
-
     private final List<Category> categories = generateCategories();
 
     private List<Category> generateCategories() {
