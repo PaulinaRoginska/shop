@@ -1,16 +1,12 @@
 package shop.model;
 
-public record Product(int productId, double price, String name, Category category, int quantity) {
-
-    public int productId() {
-        return productId;
-    }
+public record Product(int productId, double price, String name, Category category) {
 
     public Product {
         validatePrice(price);
         validateName(name);
         validateCategory(category);
-        validateQuantity(quantity);
+
     }
 
     private void validatePrice(double price) {
@@ -28,12 +24,6 @@ public record Product(int productId, double price, String name, Category categor
     private void validateCategory(Category category) {
         if (category == null) {
             throw new IllegalArgumentException("Category must not be null.");
-        }
-    }
-
-    private void validateQuantity(int quantity) {
-        if (quantity <= 0) {
-            throw new IllegalArgumentException("Quantity must be higher than 0.");
         }
     }
 }
