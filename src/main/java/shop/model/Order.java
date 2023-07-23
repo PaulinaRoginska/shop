@@ -7,10 +7,6 @@ public record Order(int orderId, String orderNumber, double orderSum, String cli
                     String clientSurname, String clientAddress, OrderStatus orderStatus,
                     Map<Product, Integer> products) {
 
-    public int orderId() {
-        return orderId;
-    }
-
     public Order {
         validateOrderSum(orderSum);
         validateClientName(clientName);

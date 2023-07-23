@@ -4,10 +4,6 @@ public record Category(int categoryId, String name) {
 
     private static int lastAssignedId = 0;
 
-    public int categoryId() {
-        return categoryId;
-    }
-
     public Category(String name) {
         this(++lastAssignedId, name);
         validateName(name);
