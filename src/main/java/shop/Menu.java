@@ -1,5 +1,9 @@
 package shop;
 
+import shop.model.Category;
+import shop.model.Order;
+import shop.model.OrderStatus;
+import shop.model.Product;
 import shop.service.CategoryService;
 import shop.service.OrderService;
 import shop.service.ProductService;
@@ -34,7 +38,7 @@ public class Menu {
         }
     }
 
-/*    public void showAllCategories() {
+    public void showAllCategories() {
         for (Category category : categories) {
             System.out.println(category.name());
         }
@@ -46,7 +50,7 @@ public class Menu {
                 System.out.println(category1.name());
             }
         }
-    }*/
+    }
 
     public void showCategorySubMenu() {
         boolean back = false;
@@ -61,8 +65,8 @@ public class Menu {
             scanner.nextLine();
 
             switch (choice) {
-/*                case 1 -> categoryService.showAllCategories();
-                case 2 -> categoryService.showOneCategory(1);*/
+                case 1 -> categoryService.showAllCategories();
+                case 2 -> categoryService.showOneCategory(1);
                 case 3 -> categoryService.addCategory("AGD");
                 case 4 -> categoryService.removeCategory(2);
                 case 5 -> back = true;
@@ -86,9 +90,9 @@ public class Menu {
             String[] words = scanner.nextLine().split(",");
 
             switch (choice) {
-/*                case 1 -> productService.showAllProducts();
-                case 2 -> productService.showOneProduct(1);*/
-                /*case 3 -> productService.addProduct();*/
+                case 1 -> productService.showAllProducts();
+                case 2 -> productService.showOneProduct(1);
+                case 3 -> productService.addProduct();
                 case 4 -> productService.removeProduct(2);
                 case 5 -> back = true;
                 default -> System.out.println("Nieprawidłowy wybór. Spróbuj ponownie.");
@@ -96,7 +100,7 @@ public class Menu {
             System.out.println();
         }
     }
-    /*public void showAllProducts() {
+    public void showAllProducts() {
         for (Product product : products) {
             System.out.println(product.name());
         }
@@ -109,7 +113,7 @@ public class Menu {
             }
         }
         return null;
-    }*/
+    }
 
     public void showOrderSubMenu() {
         boolean back = false;
@@ -125,14 +129,12 @@ public class Menu {
             int choice = scanner.nextInt();
             scanner.nextLine();
 
-            /*                case 1 -> orderService.getAllOrders();
-                case 2 -> orderService.getOrderById(1);
-                */
-            /*case 3 -> orderService.addOrder(1, "");*/
-            /*
-                case 4 -> orderService.removeOrder(2);
-                case 5 -> orderService.getOrderStatus(2);*/
-            /*case 6 -> orderService.changeOrderStatus(, OrderStatus.PAID);*/
+            case 1 -> orderService.getAllOrders();
+            case 2 -> orderService.getOrderById(1);
+            case 3 -> orderService.addOrder(1, "");
+            case 4 -> orderService.removeOrder(2);
+            case 5 -> orderService.getOrderStatus(2);
+            case 6 -> orderService.changeOrderStatus(, OrderStatus.PAID);
             if (choice == 7) {
                 back = true;
             } else {
@@ -141,7 +143,7 @@ public class Menu {
             System.out.println();
         }
     }
-    /*    public void getAllOrders() {
+    public void getAllOrders() {
         for (Order order : orders) {
             System.out.println(order.orderNumber());
         }
@@ -167,7 +169,7 @@ public class Menu {
         if (index != -1) {
             orders.set(index, updatedOrder);
         }
-    }*/
+    }
 }
 
 

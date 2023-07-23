@@ -8,8 +8,12 @@ import java.util.List;
 
 public class ProductService {
     private int productId = 0;
-    private final CategoryService categoryService = new CategoryService();
+    private final CategoryService categoryService;
     public final List<Product> products = generateProducts();
+
+    public ProductService(CategoryService categoryService) {
+        this.categoryService = categoryService;
+    }
 
     private List<Product> generateProducts() {
         List<Product> productList = new ArrayList<>();
@@ -53,13 +57,7 @@ public class ProductService {
         productId++;
     }
 
-/*    public void addCategory(String name) {
-        Category category = new Category(lastAssignedId, name);
-        categories.add(category);
-        ++lastAssignedId;*/
-
     public void removeProduct(final int productId) {
         products.remove(productId);
     }
-
 }
