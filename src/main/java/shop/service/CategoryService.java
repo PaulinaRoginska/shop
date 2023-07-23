@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class CategoryService {
+
     public static final List<Category> categories = generateCategories();
 
     public static List<Category> generateCategories() {
@@ -24,9 +25,12 @@ public class CategoryService {
         return categoryList;
     }
 
+    private int lastAssignedId = 0;
+
     public void addCategory(String name) {
-        Category category = new Category(name);
+        Category category = new Category(lastAssignedId, name);
         categories.add(category);
+        ++lastAssignedId;
     }
 
     public void removeCategory(final int categoryId) {
