@@ -12,7 +12,7 @@ import java.util.Map;
 
 public class OrderService {
     private final ProductService productService;
-    public final List<Order> orders = generateOrders();
+    private final List<Order> orders = generateOrders();
 
     public OrderService(ProductService productService) {
         this.productService = productService;

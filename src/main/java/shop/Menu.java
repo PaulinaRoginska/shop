@@ -8,6 +8,7 @@ import shop.service.CategoryService;
 import shop.service.OrderService;
 import shop.service.ProductService;
 
+import java.util.Random;
 import java.util.Scanner;
 
 public class Menu {
@@ -143,6 +144,16 @@ public class Menu {
             System.out.println();
         }
     }
+
+    public static String generateOrderNumber() {
+        Random random = new Random();
+        StringBuilder sb = new StringBuilder();
+        for (int i = 0; i < 8; i++) {
+            sb.append((char) (random.nextInt(26) + 'A'));
+        }
+        return sb.toString();
+    }
+
     public void getAllOrders() {
         for (Order order : orders) {
             System.out.println(order.orderNumber());
@@ -171,5 +182,3 @@ public class Menu {
         }
     }
 }
-
-

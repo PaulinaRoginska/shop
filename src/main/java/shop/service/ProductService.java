@@ -11,7 +11,7 @@ public class ProductService {
     private final CategoryService categoryService;
     private final List<Product> products = generateProducts();
 
-    private ProductService(CategoryService categoryService) {
+    public ProductService(CategoryService categoryService) {
         this.categoryService = categoryService;
     }
 
