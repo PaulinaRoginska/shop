@@ -3,18 +3,11 @@ package shop.model;
 import java.util.Map;
 import java.util.Random;
 
-public record Order(int orderId, String orderNumber, double orderSum, Client client, OrderStatus orderStatus,
+public record Order(int orderId, String orderNumber, Client client, OrderStatus orderStatus,
                     Map<Product, Integer> products) {
 
     public Order {
-        validateOrderSum(orderSum);
         validateProducts(products);
-    }
-
-    private void validateOrderSum(double orderSum) {
-        if (orderSum <= 0) {
-            throw new IllegalArgumentException("Order sum must be higher than 0.");
-        }
     }
 
     private void validateProducts(Map<Product, Integer> products) {
@@ -38,8 +31,6 @@ public record Order(int orderId, String orderNumber, double orderSum, Client cli
     }
 
     public Order withOrderStatus(OrderStatus newStatus) {
-        return new Order(orderId, orderNumber, orderSum, client, newStatus, products);
+        return new Order(orderId, orderNumber, client, newStatus, products);
     }
 }
-
-

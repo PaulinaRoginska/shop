@@ -9,9 +9,9 @@ import java.util.List;
 public class ProductService {
     private int productId = 0;
     private final CategoryService categoryService;
-    public final List<Product> products = generateProducts();
+    private final List<Product> products = generateProducts();
 
-    public ProductService(CategoryService categoryService) {
+    private ProductService(CategoryService categoryService) {
         this.categoryService = categoryService;
     }
 
@@ -49,6 +49,10 @@ public class ProductService {
         productList.add(product9);
         productList.add(product10);
         return productList;
+    }
+
+    public List<Product> getProducts() {
+        return products;
     }
 
     public void addProduct(double price, String name, Category category) {

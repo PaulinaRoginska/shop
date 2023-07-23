@@ -10,7 +10,7 @@ public class CategoryService {
 
     private final List<Category> categories = generateCategories();
 
-    public List<Category> generateCategories() {
+    private List<Category> generateCategories() {
         List<Category> categoryList = new ArrayList<>();
 
         Category category1 = new Category(1, "Sprzęt AGD");
@@ -40,4 +40,3 @@ public class CategoryService {
         categories.remove(categoryId);
     }
 }
-
