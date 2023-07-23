@@ -38,4 +38,13 @@ public class CategoryService {
     public void removeCategory(final int categoryId) {
         categories.remove(categoryId);
     }
+
+    public Category getById(final int categoryId) {
+        for (Category category : getCategories()) {
+            if (category.categoryId() == categoryId) {
+                return category;
+            }
+        }
+        return null;
+    }
 }
