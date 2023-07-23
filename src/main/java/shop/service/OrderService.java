@@ -1,7 +1,5 @@
 package shop.service;
 
-import shop.Main;
-import shop.model.Category;
 import shop.model.Order;
 import shop.model.OrderStatus;
 import shop.model.Product;
@@ -11,19 +9,18 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import static javax.swing.UIManager.put;
-
 public class OrderService {
-    public static final List<Order> orders = generateOrders();
+    private final ProductService productService = new ProductService();
+    public final List<Order> orders = generateOrders();
 
-    private static List<Order> generateOrders() {
+    private List<Order> generateOrders() {
         List<Order> orderList = new ArrayList<>();
         Map<Product, Integer> products = new HashMap<>();
-        products.put(ProductService.products.get(0), 1);
+        products.put(productService.products.get(0), 1);
         Map<Product, Integer> products1 = new HashMap<>();
-        products1.put(ProductService.products.get(1), 2);
+        products1.put(productService.products.get(1), 2);
         Map<Product, Integer> products2 = new HashMap<>();
-        products2.put(ProductService.products.get(2), 3);
+        products2.put(productService.products.get(2), 3);
 
         Order order1 = new Order(1, "1/07/2023", 1000, "Anna",
                 "Kowalska", "Kraków", OrderStatus.PAID, products);
@@ -37,6 +34,10 @@ public class OrderService {
         return orderList;
     }
 
+    public List<Order> getOrders() {
+        return orders;
+    }
+
     public void addOrder(Order order) {
         orders.add(order);
     }
@@ -45,33 +46,6 @@ public class OrderService {
         orders.removeIf(order -> order.orderId() == orderId);
     }
 
-    public void getAllOrders() {
-        for (Order order : orders) {
-            System.out.println(order.orderNumber());
-        }
-    }
-
-    public Order getOrderById(final int orderId) {
-        for (Order order : orders) {
-            if (order.orderId() == orderId) {
-                return order;
-            }
-        }
-        return null;
-    }
-
-    public OrderStatus getOrderStatus(int orderId) {
-        Order order = getOrderById(orderId);
-        return order != null ? order.orderStatus() : null;
-    }
-
-    public void changeOrderStatus(Order order, OrderStatus newStatus) {
-        Order updatedOrder = order.withOrderStatus(newStatus);
-        int index = orders.indexOf(order);
-        if (index != -1) {
-            orders.set(index, updatedOrder);
-        }
-    }
 }
 
 

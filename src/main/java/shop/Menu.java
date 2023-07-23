@@ -1,7 +1,5 @@
 package shop;
 
-import shop.model.Order;
-import shop.model.OrderStatus;
 import shop.service.CategoryService;
 import shop.service.OrderService;
 import shop.service.ProductService;
@@ -36,6 +34,20 @@ public class Menu {
         }
     }
 
+/*    public void showAllCategories() {
+        for (Category category : categories) {
+            System.out.println(category.name());
+        }
+    }
+
+    public void showOneCategory(final int categoryId) {
+        for (Category category1 : categories) {
+            if (category1.categoryId() == (categoryId)) {
+                System.out.println(category1.name());
+            }
+        }
+    }*/
+
     public void showCategorySubMenu() {
         boolean back = false;
         while (!back) {
@@ -49,8 +61,8 @@ public class Menu {
             scanner.nextLine();
 
             switch (choice) {
-                case 1 -> categoryService.showAllCategories();
-                case 2 -> categoryService.showOneCategory(1);
+/*                case 1 -> categoryService.showAllCategories();
+                case 2 -> categoryService.showOneCategory(1);*/
                 case 3 -> categoryService.addCategory("AGD");
                 case 4 -> categoryService.removeCategory(2);
                 case 5 -> back = true;
@@ -74,8 +86,8 @@ public class Menu {
             String[] words = scanner.nextLine().split(",");
 
             switch (choice) {
-                case 1 -> productService.showAllProducts();
-                case 2 -> productService.showOneProduct(1);
+/*                case 1 -> productService.showAllProducts();
+                case 2 -> productService.showOneProduct(1);*/
                 /*case 3 -> productService.addProduct();*/
                 case 4 -> productService.removeProduct(2);
                 case 5 -> back = true;
@@ -84,6 +96,20 @@ public class Menu {
             System.out.println();
         }
     }
+    /*public void showAllProducts() {
+        for (Product product : products) {
+            System.out.println(product.name());
+        }
+    }
+
+    public Product showOneProduct(final int productId) {
+        for (Product product1 : products) {
+            if (product1.productId() == (productId)) {
+                System.out.println(product1.name());
+            }
+        }
+        return null;
+    }*/
 
     public void showOrderSubMenu() {
         boolean back = false;
@@ -99,19 +125,49 @@ public class Menu {
             int choice = scanner.nextInt();
             scanner.nextLine();
 
-            switch (choice) {
-                case 1 -> orderService.getAllOrders();
+            /*                case 1 -> orderService.getAllOrders();
                 case 2 -> orderService.getOrderById(1);
-                /*case 3 -> orderService.addOrder(1, "");*/
+                */
+            /*case 3 -> orderService.addOrder(1, "");*/
+            /*
                 case 4 -> orderService.removeOrder(2);
-                case 5 -> orderService.getOrderStatus(2);
-                /*case 6 -> orderService.changeOrderStatus(, OrderStatus.PAID);*/
-                case 7 -> back = true;
-                default -> System.out.println("Nieprawidłowy wybór. Spróbuj ponownie.");
+                case 5 -> orderService.getOrderStatus(2);*/
+            /*case 6 -> orderService.changeOrderStatus(, OrderStatus.PAID);*/
+            if (choice == 7) {
+                back = true;
+            } else {
+                System.out.println("Nieprawidłowy wybór. Spróbuj ponownie.");
             }
             System.out.println();
         }
     }
+    /*    public void getAllOrders() {
+        for (Order order : orders) {
+            System.out.println(order.orderNumber());
+        }
+    }
+
+    public Order getOrderById(final int orderId) {
+        for (Order order : orders) {
+            if (order.orderId() == orderId) {
+                return order;
+            }
+        }
+        return null;
+    }
+
+    public OrderStatus getOrderStatus(int orderId) {
+        Order order = getOrderById(orderId);
+        return order != null ? order.orderStatus() : null;
+    }
+
+    public void changeOrderStatus(Order order, OrderStatus newStatus) {
+        Order updatedOrder = order.withOrderStatus(newStatus);
+        int index = orders.indexOf(order);
+        if (index != -1) {
+            orders.set(index, updatedOrder);
+        }
+    }*/
 }
 
 
