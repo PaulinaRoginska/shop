@@ -1,12 +1,10 @@
 package shop.model;
 
 public record Product(int productId, double price, String name, Category category) {
-
     public Product {
         validatePrice(price);
         validateName(name);
         validateCategory(category);
-
     }
 
     private void validatePrice(double price) {
@@ -16,7 +14,7 @@ public record Product(int productId, double price, String name, Category categor
     }
 
     private void validateName(String name) {
-        if (name == null || name.isBlank() || name.length() == 0 || name.length() >= 50 /*|| !name.matches("[a-zA-Z]+")*/) {
+        if (name == null || !name.matches("[a-zA-Z]{1,50}")) {
             throw new IllegalArgumentException("Invalid name.");
         }
     }

@@ -1,5 +1,6 @@
 package shop.service;
 
+import shop.model.Client;
 import shop.model.Order;
 import shop.model.OrderStatus;
 import shop.model.Product;
@@ -10,8 +11,12 @@ import java.util.List;
 import java.util.Map;
 
 public class OrderService {
-    private final ProductService productService = new ProductService();
+    private final ProductService productService;
     public final List<Order> orders = generateOrders();
+
+    public OrderService(ProductService productService) {
+        this.productService = productService;
+    }
 
     private List<Order> generateOrders() {
         List<Order> orderList = new ArrayList<>();
@@ -22,12 +27,12 @@ public class OrderService {
         Map<Product, Integer> products2 = new HashMap<>();
         products2.put(productService.products.get(2), 3);
 
-        Order order1 = new Order(1, "1/07/2023", 1000, "Anna",
-                "Kowalska", "Kraków", OrderStatus.PAID, products);
-        Order order2 = new Order(2, "2/07/2023", 9001, "Piotr",
-                "Czajka", "Warszawa", OrderStatus.IN_PREPARATION, products1);
-        Order order3 = new Order(3, "3/07/2023", 450, "Ewa",
-                "Cichal", "Warszawa", OrderStatus.SENT, products2);
+        Order order1 = new Order(1, "1/07/2023", 1000, new Client("Anna", "Kowalska", "Warszawa"),
+                OrderStatus.PAID, products);
+        Order order2 = new Order(2, "2/07/2023", 9001, new Client("Piotr", "Czajka", "Gdańsk"),
+                OrderStatus.IN_PREPARATION, products1);
+        Order order3 = new Order(3, "3/07/2023", 450, new Client("Ewa", "Cichal", "Gdańsk"),
+                OrderStatus.SENT, products2);
         orderList.add(order1);
         orderList.add(order2);
         orderList.add(order3);
@@ -47,5 +52,3 @@ public class OrderService {
     }
 
 }
-
-

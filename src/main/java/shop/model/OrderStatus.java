@@ -4,5 +4,5 @@ public enum OrderStatus {
     PAID,
     CANCELLED,
     SENT,
-    IN_PREPARATION;
+    IN_PREPARATION
 }

@@ -3,39 +3,17 @@ package shop.model;
 import java.util.Map;
 import java.util.Random;
 
-public record Order(int orderId, String orderNumber, double orderSum, String clientName,
-                    String clientSurname, String clientAddress, OrderStatus orderStatus,
+public record Order(int orderId, String orderNumber, double orderSum, Client client, OrderStatus orderStatus,
                     Map<Product, Integer> products) {
 
     public Order {
         validateOrderSum(orderSum);
-        validateClientName(clientName);
-        validateClientSurname(clientSurname);
-        validateClientAddress(clientAddress);
         validateProducts(products);
     }
 
     private void validateOrderSum(double orderSum) {
         if (orderSum <= 0) {
             throw new IllegalArgumentException("Order sum must be higher than 0.");
-        }
-    }
-
-    private void validateClientName(String clientName) {
-        if (clientName == null || clientName.isBlank() || clientName.length() == 0 || clientName.length() >= 50 /*|| !clientName.matches("[a-zA-Z]+")*/) {
-            throw new IllegalArgumentException("Invalid client name.");
-        }
-    }
-
-    private void validateClientSurname(String clientSurname) {
-        if (clientSurname == null || clientSurname.isBlank() || clientSurname.length() == 0 || clientSurname.length() >= 50 /*|| !clientSurname.matches("[a-zA-Z]+")*/) {
-            throw new IllegalArgumentException("Invalid client surname.");
-        }
-    }
-
-    private void validateClientAddress(String clientAddress) {
-        if (clientAddress == null || clientAddress.isBlank() || clientAddress.length() == 0 || clientAddress.length() >= 50) {
-            throw new IllegalArgumentException("Invalid client address.");
         }
     }
 
@@ -60,7 +38,7 @@ public record Order(int orderId, String orderNumber, double orderSum, String cli
     }
 
     public Order withOrderStatus(OrderStatus newStatus) {
-        return new Order(orderId, orderNumber, orderSum, clientName, clientSurname, clientAddress, newStatus, products);
+        return new Order(orderId, orderNumber, orderSum, client, newStatus, products);
     }
 }
 
