@@ -66,8 +66,8 @@ public class Menu {
             scanner.nextLine();
 
             switch (choice) {
-                case 1 -> categoryService.showAllCategories();
-                case 2 -> categoryService.showOneCategory(1);
+                case 1 -> showAllCategories();
+                case 2 -> showOneCategory(1);
                 case 3 -> categoryService.addCategory("AGD");
                 case 4 -> categoryService.removeCategory(2);
                 case 5 -> back = true;
@@ -88,12 +88,11 @@ public class Menu {
 
             int choice = scanner.nextInt();
             scanner.nextLine();
-            String[] words = scanner.nextLine().split(",");
 
             switch (choice) {
-                case 1 -> productService.showAllProducts();
-                case 2 -> productService.showOneProduct(1);
-                case 3 -> productService.addProduct();
+                case 1 -> showAllProducts();
+                case 2 -> showOneProduct(1);
+                case 3 -> addProduct();
                 case 4 -> productService.removeProduct(2);
                 case 5 -> back = true;
                 default -> System.out.println("Nieprawidłowy wybór. Spróbuj ponownie.");
@@ -101,6 +100,17 @@ public class Menu {
             System.out.println();
         }
     }
+    public void addProduct(){
+        System.out.println("Podaj cenę produktu:");
+        double price = scanner.nextDouble();
+        System.out.println("Podaj nazwę produktu:");
+        String name = scanner.nextLine();
+        System.out.println("Podaj ID kategorii:");
+        int categoryID = scanner.nextInt();
+        Category category = categoryService.getById(categoryID);
+        productService.addProduct(price,name,category);
+    }
+
     public void showAllProducts() {
         for (Product product : productService.getProducts()) {
             System.out.println(product.name());
@@ -133,7 +143,7 @@ public class Menu {
             case 1 -> orderService.getAllOrders();
             case 2 -> orderService.getOrderById(1);
             case 3 -> orderService.addOrder(1, "");
-            case 4 -> orderService.removeOrder(2);
+            case 4 -> orderService.removeOrder();
             case 5 -> orderService.getOrderStatus(2);
             case 6 -> orderService.changeOrderStatus(, OrderStatus.PAID);
             if (choice == 7) {
