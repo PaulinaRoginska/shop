@@ -5,15 +5,87 @@ import shop.service.CategoryService;
 import shop.service.OrderService;
 import shop.service.ProductService;
 
-import java.util.HashMap;
-import java.util.Random;
-import java.util.Scanner;
+import java.util.*;
 
 public class Menu {
     private final Scanner scanner = new Scanner(System.in);
     private final CategoryService categoryService = new CategoryService();
     private final ProductService productService = new ProductService(categoryService);
     private final OrderService orderService = new OrderService(productService);
+
+
+    private List<Category> generateCategories() {
+        List<Category> categoryList = new ArrayList<>();
+
+        Category category1 = new Category(1, "Sprzęt AGD");
+        Category category2 = new Category(2, "Sprzęt RTV");
+        Category category3 = new Category(3, "Zabawki");
+        Category category4 = new Category(4, "Meble");
+        Category category5 = new Category(5, "Ubrania");
+        categoryList.add(category1);
+        categoryList.add(category2);
+        categoryList.add(category3);
+        categoryList.add(category4);
+        categoryList.add(category5);
+        return categoryList;
+    }
+
+    private List<Product> generateProducts() {
+        List<Product> productList = new ArrayList<>();
+
+        Product product1 = new Product(1, 1000, "Pralka",
+                categoryService.getCategories().get(0));
+        Product product2 = new Product(2, 3000, "Lodówka",
+                categoryService.getCategories().get(0));
+        Product product3 = new Product(3, 5000, "Laptop",
+                categoryService.getCategories().get(1));
+        Product product4 = new Product(4, 4500.50, "Smartfon",
+                categoryService.getCategories().get(1));
+        Product product5 = new Product(5, 150, "Barbie",
+                categoryService.getCategories().get(2));
+        Product product6 = new Product(6, 50, "Puzzle",
+                categoryService.getCategories().get(2));
+        Product product7 = new Product(7, 900.50, "Stół",
+                categoryService.getCategories().get(3));
+        Product product8 = new Product(8, 4000, "Sofa",
+                categoryService.getCategories().get(3));
+        Product product9 = new Product(9, 250, "Sukienka",
+                categoryService.getCategories().get(4));
+        Product product10 = new Product(10, 300, "Kurtka",
+                categoryService.getCategories().get(4));
+        productList.add(product1);
+        productList.add(product2);
+        productList.add(product3);
+        productList.add(product4);
+        productList.add(product5);
+        productList.add(product6);
+        productList.add(product7);
+        productList.add(product8);
+        productList.add(product9);
+        productList.add(product10);
+        return productList;
+    }
+
+    private List<Order> generateOrders() {
+        List<Order> orderList = new ArrayList<>();
+        Map<Product, Integer> products = new HashMap<>();
+        products.put(productService.getProducts().get(0), 1);
+        Map<Product, Integer> products1 = new HashMap<>();
+        products1.put(productService.getProducts().get(1), 2);
+        Map<Product, Integer> products2 = new HashMap<>();
+        products2.put(productService.getProducts().get(2), 3);
+
+        Order order1 = new Order(1, "1/07/2023", new Client("Anna", "Kowalska", "Warszawa"),
+                OrderStatus.PAID, products);
+        Order order2 = new Order(2, "2/07/2023", new Client("Piotr", "Czajka", "Gdańsk"),
+                OrderStatus.IN_PREPARATION, products1);
+        Order order3 = new Order(3, "3/07/2023", new Client("Ewa", "Cichal", "Gdańsk"),
+                OrderStatus.SENT, products2);
+        orderList.add(order1);
+        orderList.add(order2);
+        orderList.add(order3);
+        return orderList;
+    }
 
     public void showMainMenu() {
         boolean exit = false;
@@ -141,7 +213,7 @@ public class Menu {
             switch (choice) {
                 case 1 -> getAllOrders();
                 case 2 -> getOrderById(1);
-                case 3 -> orderService.addOrder("1/07/2023", new Client("Jan",
+                case 3 -> orderService.addOrder(generateOrderNumber(), new Client("Jan",
                         "Kowalski", "Brzozowa 1"), OrderStatus.PAID, new HashMap<>());
                 case 4 -> orderService.removeOrder(2);
                 case 5 -> getOrderStatus(2);
@@ -195,15 +267,3 @@ public class Menu {
         String orderStatus1 = scanner.nextLine();
     }
 }
-
-
-/*
-    public void addProduct() {
-        System.out.println("Podaj cenę produktu:");
-        double price = scanner.nextDouble();
-        System.out.println("Podaj nazwę produktu:");
-        String name = scanner.nextLine();
-        System.out.println("Podaj ID kategorii:");
-        int categoryID = scanner.nextInt();
-        Category category = categoryService.getById(categoryID);
-        productService.addProduct(price, name, category);*/
