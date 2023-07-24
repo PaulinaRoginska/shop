@@ -6,7 +6,7 @@ public record Category(int categoryId, String name) {
     }
 
     private void validateName(String name) {
-        if (name == null || !name.matches("[a-zA-Z]{1,50}")) {
+        if (name == null /*|| !name.matches("[a-zA-Z]{1,50}")*/) {
             throw new IllegalArgumentException("Invalid category name.");
         }
     }
