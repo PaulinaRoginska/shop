@@ -5,6 +5,7 @@ import shop.service.CategoryService;
 import shop.service.OrderService;
 import shop.service.ProductService;
 
+import java.util.HashMap;
 import java.util.Random;
 import java.util.Scanner;
 
@@ -141,14 +142,16 @@ public class Menu {
                 case 1 -> getAllOrders();
                 case 2 -> getOrderById(1);
                 case 3 -> orderService.addOrder("1/07/2023", new Client("Jan",
-                        "Kowalski", "Brzozowa 1"), OrderStatus.PAID, product1);
+                        "Kowalski", "Brzozowa 1"), OrderStatus.PAID, new HashMap<>());
                 case 4 -> orderService.removeOrder(2);
                 case 5 -> getOrderStatus(2);
-                case 6 -> changeOrderStatus(order1, OrderStatus.PAID);
-                if (choice == 7) {
-                    back = true;
-                } else {
-                    System.out.println("Nieprawidłowy wybór. Spróbuj ponownie.");
+                case 6 -> {
+                    changeOrderStatus();
+                    if (choice == 7) {
+                        back = true;
+                    } else {
+                        System.out.println("Nieprawidłowy wybór. Spróbuj ponownie.");
+                    }
                 }
                 default -> System.out.println("Cofnij");
             }
@@ -185,11 +188,22 @@ public class Menu {
         return order != null ? order.orderStatus() : null;
     }
 
-    public void changeOrderStatus(Order order, OrderStatus newStatus) {
-        Order updatedOrder = order.withOrderStatus(newStatus);
-        int index = orderService.getOrders().indexOf(order);
-        if (index != -1) {
-            orderService.getOrders().set(index, updatedOrder);
-        }
+    public void changeOrderStatus() {
+        System.out.println("Podaj Id zamówienia:");
+        int orderId = scanner.nextInt();
+        System.out.println("Podaj nowy status:");
+        String orderStatus1 = scanner.nextLine();
     }
 }
+
+
+/*
+    public void addProduct() {
+        System.out.println("Podaj cenę produktu:");
+        double price = scanner.nextDouble();
+        System.out.println("Podaj nazwę produktu:");
+        String name = scanner.nextLine();
+        System.out.println("Podaj ID kategorii:");
+        int categoryID = scanner.nextInt();
+        Category category = categoryService.getById(categoryID);
+        productService.addProduct(price, name, category);*/

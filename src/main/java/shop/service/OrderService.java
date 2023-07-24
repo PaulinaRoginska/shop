@@ -55,4 +55,11 @@ public class OrderService {
         orders.removeIf(order -> order.orderId() == orderId);
     }
 
+    public void changeOrderStatus(Order order, OrderStatus newStatus) {
+        Order updatedOrder = order.withOrderStatus(newStatus);
+        int index = orders.indexOf(order);
+        if (index != -1) {
+            orders.set(index, updatedOrder);
+        }
+    }
 }
