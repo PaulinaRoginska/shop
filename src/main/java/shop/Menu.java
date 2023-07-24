@@ -1,9 +1,6 @@
 package shop;
 
-import shop.model.Category;
-import shop.model.Order;
-import shop.model.OrderStatus;
-import shop.model.Product;
+import shop.model.*;
 import shop.service.CategoryService;
 import shop.service.OrderService;
 import shop.service.ProductService;
@@ -39,20 +36,6 @@ public class Menu {
         }
     }
 
-    public void showAllCategories() {
-        for (Category category : categoryService.getCategories()) {
-            System.out.println(category.name());
-        }
-    }
-
-    public void showOneCategory(final int categoryId) {
-        for (Category category1 : categoryService.getCategories()) {
-            if (category1.categoryId() == (categoryId)) {
-                System.out.println(category1.name());
-            }
-        }
-    }
-
     public void showCategorySubMenu() {
         boolean back = false;
         while (!back) {
@@ -74,6 +57,20 @@ public class Menu {
                 default -> System.out.println("Nieprawidłowy wybór. Spróbuj ponownie.");
             }
             System.out.println();
+        }
+    }
+
+    public void showAllCategories() {
+        for (Category category : categoryService.getCategories()) {
+            System.out.println(category.name());
+        }
+    }
+
+    public void showOneCategory(final int categoryId) {
+        for (Category category1 : categoryService.getCategories()) {
+            if (category1.categoryId() == (categoryId)) {
+                System.out.println(category1.name());
+            }
         }
     }
 
@@ -100,7 +97,8 @@ public class Menu {
             System.out.println();
         }
     }
-    public void addProduct(){
+
+    public void addProduct() {
         System.out.println("Podaj cenę produktu:");
         double price = scanner.nextDouble();
         System.out.println("Podaj nazwę produktu:");
@@ -108,7 +106,7 @@ public class Menu {
         System.out.println("Podaj ID kategorii:");
         int categoryID = scanner.nextInt();
         Category category = categoryService.getById(categoryID);
-        productService.addProduct(price,name,category);
+        productService.addProduct(price, name, category);
     }
 
     public void showAllProducts() {
@@ -139,17 +137,20 @@ public class Menu {
 
             int choice = scanner.nextInt();
             scanner.nextLine();
-
-            case 1 -> orderService.getAllOrders();
-            case 2 -> orderService.getOrderById(1);
-            case 3 -> orderService.addOrder(1, "");
-            case 4 -> orderService.removeOrder();
-            case 5 -> orderService.getOrderStatus(2);
-            case 6 -> orderService.changeOrderStatus(, OrderStatus.PAID);
-            if (choice == 7) {
-                back = true;
-            } else {
-                System.out.println("Nieprawidłowy wybór. Spróbuj ponownie.");
+            switch (choice) {
+                case 1 -> getAllOrders();
+                case 2 -> getOrderById(1);
+                case 3 -> orderService.addOrder("1/07/2023", new Client("Jan",
+                        "Kowalski", "Brzozowa 1"), OrderStatus.PAID, product1);
+                case 4 -> orderService.removeOrder(2);
+                case 5 -> getOrderStatus(2);
+                case 6 -> changeOrderStatus(order1, OrderStatus.PAID);
+                if (choice == 7) {
+                    back = true;
+                } else {
+                    System.out.println("Nieprawidłowy wybór. Spróbuj ponownie.");
+                }
+                default -> System.out.println("Cofnij");
             }
             System.out.println();
         }
