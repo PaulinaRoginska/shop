@@ -11,6 +11,7 @@ import java.util.List;
 import java.util.Map;
 
 public class OrderService {
+    private int lastOrderId = 0;
     private final ProductService productService;
     private final List<Order> orders = generateOrders();
 
@@ -43,11 +44,14 @@ public class OrderService {
         return orders;
     }
 
-    public void addOrder(Order order) {
+    public void addOrder(String orderNumber, Client client, OrderStatus orderStatus,
+                         Map<Product, Integer> products) {
+        Order order = new Order(lastOrderId, orderNumber, client, orderStatus, products);
         orders.add(order);
+        lastOrderId++;
     }
 
-    public void removeOrder(int orderId) {
+    public void removeOrder(final int orderId) {
         orders.removeIf(order -> order.orderId() == orderId);
     }
 
