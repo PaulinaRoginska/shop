@@ -5,13 +5,22 @@ import shop.service.CategoryService;
 import shop.service.OrderService;
 import shop.service.ProductService;
 
-import java.util.*;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Random;
+import java.util.Scanner;
 
 public class Menu {
     private final Scanner scanner = new Scanner(System.in);
     private final CategoryService categoryService = new CategoryService();
     private final ProductService productService = new ProductService(categoryService);
     private final OrderService orderService = new OrderService(productService);
+
+    {
+        generateCategories();
+        generateProducts();
+        generateOrders();
+    }
 
     private void generateCategories() {
         categoryService.addCategory("Sprzęt AGD");
@@ -44,25 +53,25 @@ public class Menu {
                 categoryService.getCategories().get(4));
     }
 
-    private List<Order> generateOrders() {
-        List<Order> orderList = new ArrayList<>();
+    private void generateOrders() {
         Map<Product, Integer> products = new HashMap<>();
         products.put(productService.getProducts().get(0), 1);
-        Map<Product, Integer> products1 = new HashMap<>();
-        products1.put(productService.getProducts().get(1), 2);
-        Map<Product, Integer> products2 = new HashMap<>();
-        products2.put(productService.getProducts().get(2), 3);
+        products.put(productService.getProducts().get(1), 2);
+        products.put(productService.getProducts().get(2), 3);
+        products.put(productService.getProducts().get(3), 5);
 
-        Order order1 = new Order(1, "1/07/2023", new Client("Anna", "Kowalska", "Warszawa"),
+        orderService.addOrder("1/07/2023",
+                new Client("Anna", "Kowalska", "Warszawa"),
                 OrderStatus.PAID, products);
-        Order order2 = new Order(2, "2/07/2023", new Client("Piotr", "Czajka", "Gdańsk"),
-                OrderStatus.IN_PREPARATION, products1);
-        Order order3 = new Order(3, "3/07/2023", new Client("Ewa", "Cichal", "Gdańsk"),
-                OrderStatus.SENT, products2);
-        orderList.add(order1);
-        orderList.add(order2);
-        orderList.add(order3);
-        return orderList;
+        orderService.addOrder("2/07/2023",
+                new Client("Piotr", "Czajka", "Gdańsk"),
+                OrderStatus.IN_PREPARATION, products);
+        orderService.addOrder("3/07/2023",
+                new Client("Ewa", "Cichal", "Wrocław"),
+                OrderStatus.SENT, products);
+        orderService.addOrder("4/07/2023",
+                new Client("Jan", "Kowalski", "Kraków"),
+                OrderStatus.CANCELLED, products);
     }
 
     public void showMainMenu() {
